@@ -372,7 +372,6 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "recipe_id": {
-                    "description": "gorm.Model",
                     "type": "integer"
                 },
                 "user_id": {
@@ -384,7 +383,6 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "recipe_id": {
-                    "description": "gorm.Model",
                     "type": "integer"
                 },
                 "score": {
@@ -405,7 +403,6 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "title": {
-                    "description": "gorm.Model",
                     "type": "string"
                 }
             }
@@ -420,7 +417,6 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "username": {
-                    "description": "gorm.Model",
                     "type": "string"
                 }
             }

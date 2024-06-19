@@ -366,7 +366,6 @@
                     "type": "string"
                 },
                 "recipe_id": {
-                    "description": "gorm.Model",
                     "type": "integer"
                 },
                 "user_id": {
@@ -378,7 +377,6 @@
             "type": "object",
             "properties": {
                 "recipe_id": {
-                    "description": "gorm.Model",
                     "type": "integer"
                 },
                 "score": {
@@ -399,7 +397,6 @@
                     "type": "string"
                 },
                 "title": {
-                    "description": "gorm.Model",
                     "type": "string"
                 }
             }
@@ -414,7 +411,6 @@
                     "type": "string"
                 },
                 "username": {
-                    "description": "gorm.Model",
                     "type": "string"
                 }
             }
