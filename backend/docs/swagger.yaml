@@ -209,6 +209,25 @@ paths:
       summary: Delete a recipe by ID
       tags:
       - recipes
+  /recipes/{recipeId}:
+    get:
+      description: Get single recipe by ID
+      parameters:
+      - description: Recipe ID
+        in: path
+        name: recipeId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Recipe'
+      summary: Get single recipe by ID
+      tags:
+      - recipes
   /recipes/author/{authorId}:
     get:
       description: Get recipes by author ID
@@ -247,6 +266,30 @@ paths:
           schema:
             $ref: '#/definitions/models.User'
       summary: Get user by username
+      tags:
+      - users
+  /users/login:
+    get:
+      description: checks username and password and returns user
+      parameters:
+      - description: Username
+        in: path
+        name: username
+        required: true
+        type: string
+      - description: Password
+        in: path
+        name: password
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+      summary: checks username and password and returns user
       tags:
       - users
   /users/register:

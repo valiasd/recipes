@@ -300,6 +300,71 @@ const docTemplate = `{
                 }
             }
         },
+        "/recipes/{recipeId}": {
+            "get": {
+                "description": "Get single recipe by ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "recipes"
+                ],
+                "summary": "Get single recipe by ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Recipe ID",
+                        "name": "recipeId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Recipe"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/login": {
+            "get": {
+                "description": "checks username and password and returns user",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "checks username and password and returns user",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Username",
+                        "name": "username",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Password",
+                        "name": "password",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.User"
+                        }
+                    }
+                }
+            }
+        },
         "/users/register": {
             "post": {
                 "description": "Register a new user",

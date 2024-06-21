@@ -54,6 +54,28 @@ func GetRecipesByAuthorId(c *gin.Context) {
 	c.JSON(http.StatusOK, recipes)
 }
 
+// GetRecipeById godoc
+// @Summary Get single recipe by ID
+// @Description Get single recipe by ID
+// @Tags recipes
+// @Produce json
+// @Param recipeId path uint true "Recipe ID"
+// @Success 200 {object} models.Recipe
+// @Router /recipes/{recipeId} [get]
+func GetRecipeById(c *gin.Context) {
+	recipeID, err := strconv.ParseUint(c.Param("recipeId"), 10, 32)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid author ID"})
+		return
+	}
+	var recipe models.Recipe
+	if err := config.DB.Where("ID = ?", recipeID).First(&recipe).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+	c.JSON(http.StatusOK, recipe)
+}
+
 // DeleteRecipe godoc
 // @Summary Delete a recipe by ID
 // @Description Delete a recipe by ID

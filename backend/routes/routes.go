@@ -4,7 +4,6 @@ import (
 	"recipes/controllers"
 	_ "recipes/docs"
 
-	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/swaggo/files"
 	"github.com/swaggo/gin-swagger"
@@ -12,12 +11,6 @@ import (
 
 func SetupRouter() *gin.Engine {
 	router := gin.Default()
-	config := cors.DefaultConfig()
-	config.AllowOrigins = []string{"http://localhost:3000"}
-	config.AllowHeaders = []string{"Origin", "Content-Length", "Content-Type", "Authorization"}
-	config.AllowMethods = []string{"GET", "POST", "PUT", "DELETE"}
-
-	router.Use(cors.New(config))
 
 	// API group
 	api := router.Group("/api")
@@ -26,6 +19,7 @@ func SetupRouter() *gin.Engine {
 		userGroup := api.Group("/users")
 		{
 			userGroup.POST("/register", controllers.RegisterUser)
+			userGroup.POST("/login", controllers.AuthenticateUser)
 			userGroup.GET("/:username", controllers.GetUserByUsername)
 		}
 
@@ -35,6 +29,7 @@ func SetupRouter() *gin.Engine {
 			recipeGroup.POST("/", controllers.SaveRecipe)
 			recipeGroup.GET("/author/:authorId", controllers.GetRecipesByAuthorId)
 			recipeGroup.DELETE("/:id", controllers.DeleteRecipe)
+			recipeGroup.GET("/:recipeId", controllers.GetRecipeById)
 		}
 
 		// Comment routes

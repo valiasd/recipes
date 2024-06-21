@@ -32,8 +32,10 @@ services:
     build:
       context: ./frontend
     container_name: recipe_frontend
+    environment:
+      VUE_APP_API_URL: http://recipe_backend:8080
     ports:
-      - "4200:80"
+      - "80:80"
     depends_on:
       - backend
 

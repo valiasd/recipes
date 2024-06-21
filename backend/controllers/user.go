@@ -51,3 +51,25 @@ func GetUserByUsername(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, user)
 }
+
+// AuthenticateUser godoc
+// @Summary checks username and password and returns user
+// @Description checks username and password and returns user
+// @Tags users
+// @Produce json
+// @Param username path string true "Username"
+// @Param password path string true "Password"
+// @Success 200 {object} models.User
+// @Router /users/login [get]
+func AuthenticateUser(c *gin.Context) {
+	var user models.User
+	if err := c.ShouldBindJSON(&user); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	if err := config.DB.Where("username = ? AND password = ?", user.Username, user.Password).First(&user).Error; err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "user not found"})
+		return
+	}
+	c.JSON(http.StatusOK, user)
+}
